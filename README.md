@@ -1,8 +1,6 @@
-# Simple typescript based node starter application
+# Robot Walk
 
-It has a bare minimum configuration for a typescript based node application.
-
-It comes with EsLint and typescript configured.
+It is a console application that will ensure a robot will walk on a defined grid
 
 ## Setup
 
