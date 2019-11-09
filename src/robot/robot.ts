@@ -1,8 +1,7 @@
-import { DirectionType, Command, directionMap, OrderedDirections, directionMoveX, directionMoveY, PlaceParams } from '../command';
+import { Command, directionMap, directionMoveX, directionMoveY, DirectionType, OrderedDirections, PlaceParams } from '../command';
 import { CommandType } from '../command';
-import { TableWidthY, TableWidthX } from './table-config';
 import { log } from '../log';
-
+import { TableWidthX, TableWidthY } from './table-config';
 
 export class Robot {
     private posX: number;
@@ -17,10 +16,9 @@ export class Robot {
         this.output = output;
     }
 
-
-    apply (command: Command) {
+    public apply(command: Command) {
         switch(command.commandType) {
-            case CommandType.PLACE: 
+            case CommandType.PLACE:
                 this.place(command);
                 break;
             case CommandType.REPORT:
@@ -29,16 +27,16 @@ export class Robot {
             case CommandType.LEFT:
                 this.left();
                 break;
-            case CommandType.RIGHT: 
+            case CommandType.RIGHT:
                 this.right();
                 break;
             case CommandType.MOVE:
                 this.move();
-                break;    
+                break;
         }
     }
 
-    private place (command: Command) { 
+    private place(command: Command) {
         if (this.isValidPosition(command.commandParams.posX, command.commandParams.posY)) {
             this.initialized = true;
             this.posX = command.commandParams.posX;
@@ -48,7 +46,7 @@ export class Robot {
         }
     }
 
-    private report () {
+    private report() {
         if (this.initialized) {
             this.output({
                 posX: this.posX,
@@ -58,28 +56,28 @@ export class Robot {
         }
     }
 
-    private left () {
+    private left() {
         if (!this.initialized) {
             log('Not initialized yet');
             return;
         }
 
-        this.currentDirectionNumber = (this.currentDirectionNumber + 3) % this.totalDirections; 
+        this.currentDirectionNumber = (this.currentDirectionNumber + 3) % this.totalDirections;
         this.currentDirection = OrderedDirections[this.currentDirectionNumber];
         log('turning left', this.currentDirection);
     }
 
-    private right () {
+    private right() {
         if (!this.initialized) {
             log('Not initialized yet');
             return;
         }
-        this.currentDirectionNumber = (this.currentDirectionNumber + 1) % this.totalDirections; 
+        this.currentDirectionNumber = (this.currentDirectionNumber + 1) % this.totalDirections;
         this.currentDirection = OrderedDirections[this.currentDirectionNumber];
         log('turning right', this.currentDirection);
     }
 
-    private move () {
+    private move() {
         if (!this.initialized) {
             log('Not initialized yet');
             return;
@@ -95,8 +93,8 @@ export class Robot {
         log('moving forward', this.posX, this.posY);
     }
 
-    private isValidPosition(posX: number, posY: number) { 
+    private isValidPosition(posX: number, posY: number) {
         return posX >= 0 && posX < TableWidthX &&
                posY >= 0 && posY < TableWidthY;
-    } 
+    }
 }

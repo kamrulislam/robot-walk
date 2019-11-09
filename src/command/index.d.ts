@@ -1,5 +1,5 @@
-import { CommandType } from "./command-type";
-import { DirectionType } from "./direction";
+import { CommandType } from './command-type';
+import { DirectionType } from './direction';
 
 export interface PlaceParams {
     posX: number;
@@ -7,8 +7,7 @@ export interface PlaceParams {
     direction: DirectionType;
 }
 
-
 export interface Command {
-    commandType: CommandType,
-    commandParams?: PlaceParams
+    commandType: CommandType;
+    commandParams?: PlaceParams;
 }

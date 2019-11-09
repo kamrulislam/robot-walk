@@ -1,12 +1,11 @@
 import { Command } from '../command';
-import { Robot } from '../robot';
 import { output } from '../output';
+import { Robot } from '../robot';
 
-
-export const executeCommands = (commands: Array<Command>) => {
+export const executeCommands = (commands: Command[]) => {
     const robot = new Robot(output);
 
-    commands.forEach(command => {
+    commands.forEach((command) => {
         robot.apply(command);
-    });        
-}
+    });
+};
