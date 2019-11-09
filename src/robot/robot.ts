@@ -1,6 +1,7 @@
-import { DirectionType, Command, directionMap } from '../command';
+import { DirectionType, Command, directionMap, OrderedDirections, directionMoveX, directionMoveY } from '../command';
 import { CommandType } from '../command';
 import { TableWidthY, TableWidthX } from './table-config';
+import { log } from '../log';
 
 
 export class Robot {
@@ -9,6 +10,7 @@ export class Robot {
     private currentDirection: DirectionType;
     private currentDirectionNumber: number;
     private initialized = false;
+    private totalDirections = OrderedDirections.length;
 
     constructor() {
 
@@ -23,6 +25,15 @@ export class Robot {
             case CommandType.REPORT:
                 this.report();
                 break;
+            case CommandType.LEFT:
+                this.left();
+                break;
+            case CommandType.RIGHT: 
+                this.right();
+                break;
+            case CommandType.MOVE:
+                this.move();
+                break;    
         }
     }
 
@@ -40,6 +51,43 @@ export class Robot {
         if (this.initialized) {
             console.log(this.posX, this.posY, this.currentDirection);
         }
+    }
+
+    private left () {
+        if (!this.initialized) {
+            log('Not initialized yet');
+            return;
+        }
+
+        this.currentDirectionNumber = (this.currentDirectionNumber + 3) % this.totalDirections; 
+        this.currentDirection = OrderedDirections[this.currentDirectionNumber];
+        log('turning left', this.currentDirection);
+    }
+
+    private right () {
+        if (!this.initialized) {
+            log('Not initialized yet');
+            return;
+        }
+        this.currentDirectionNumber = (this.currentDirectionNumber + 1) % this.totalDirections; 
+        this.currentDirection = OrderedDirections[this.currentDirectionNumber];
+        log('turning right', this.currentDirection);
+    }
+
+    private move () {
+        if (!this.initialized) {
+            log('Not initialized yet');
+            return;
+        }
+        const posX = this.posX + directionMoveX[this.currentDirection];
+        const posY = this.posY + directionMoveY[this.currentDirection];
+        if (!this.isValidPosition(posX, posY)) {
+            log('cannot move forward');
+            return;
+        }
+        this.posX = posX;
+        this.posY = posY;
+        log('moving forward', this.posX, this.posY);
     }
 
     private isValidPosition(posX: number, posY: number) { 

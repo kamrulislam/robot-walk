@@ -1,0 +1,20 @@
+move
+left
+right
+asdf
+asdf
+place 30,3, north
+move
+place 0,1,north
+left
+right
+move
+report
+move
+left
+move 
+move
+move
+report
+move
+report
