@@ -30,6 +30,12 @@ To run test, run the following command
 npm run test
 ```
 
+To see debug log run
+
+```
+npm run test-debug
+```
+
 ## Additional
 
 This project also includes some vscode extensions suggestions.
