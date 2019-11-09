@@ -15,6 +15,21 @@ npm run build
 npm start
 ```
 
+to see debug message
+
+```
+npm run start-debug
+```
+
+
+## Test
+
+To run test, run the following command
+
+```
+npm run test
+```
+
 ## Additional
 
 This project also includes some vscode extensions suggestions.
