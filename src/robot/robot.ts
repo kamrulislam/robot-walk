@@ -62,7 +62,7 @@ export class Robot {
             return;
         }
 
-        this.currentDirectionNumber = (this.currentDirectionNumber + 3) % this.totalDirections;
+        this.currentDirectionNumber = (this.currentDirectionNumber + this.totalDirections - 1) % this.totalDirections;
         this.currentDirection = OrderedDirections[this.currentDirectionNumber];
         log('turning left', this.currentDirection);
     }
