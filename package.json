@@ -7,12 +7,12 @@
     "start": "npm run serve",
     "start-debug": "DEBUG=true npm run serve",
     "serve": "node dist/index.js",
-    "build": "npm run build-ts",
+    "build": "npm run tslint && npm run build-ts",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint --project tsconfig.json --config tslint.json",
     "test": "jest",
-    "test-debug": "DEBUG=true jest"
+    "test-debug": "DEBUG=true jest --notify --verbose"
   },
   "author": "",
   "license": "ISC",

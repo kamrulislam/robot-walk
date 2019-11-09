@@ -9,8 +9,8 @@ describe('getParamsForPlaceCommand:', ()=> {
         expect(getParamsForPlaceCommand('PLACE 20,30,WEST'))
             .toEqual({posX: 20, posY: 30, direction: DirectionType.WEST});
     });
-    
-})
+
+});
 
 describe('getCommandFromString:', () => {
     test('test string to Command object conversion', () => {
@@ -20,7 +20,7 @@ describe('getCommandFromString:', () => {
 });
 
 describe('commandConverter:', () => {
-    
+
     test('test multiple case insensitive string to command conversion', () => {
         const commands = commandConverter([
             'place 2,3,north',
@@ -38,6 +38,6 @@ describe('commandConverter:', () => {
             commandType: CommandType.MOVE,
             commandParams: undefined});
         expect(commands[0].commandType).toBe(CommandType.PLACE);
-    
+
     });
-})
+});

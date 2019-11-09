@@ -1,4 +1,4 @@
-import { PlaceParams, CommandType, DirectionType } from '../command';
+import { CommandType, DirectionType, PlaceParams } from '../command';
 import { Robot } from './robot';
 
 describe('Robot:', () => {
@@ -6,7 +6,7 @@ describe('Robot:', () => {
     beforeEach(() => {
         return mockFunction = jest.fn((x: PlaceParams) => x);
     });
-    test('initalization', ()=> {
+    test('initalization and report', ()=> {
         const robot = new Robot({dimX: 5, dimY: 5}, mockFunction);
         robot.apply({
             commandType: CommandType.PLACE,
