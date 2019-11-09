@@ -1,4 +1,4 @@
-import { commandConverter } from './command'
+import { commandConverter } from './command';
 import { executeCommands } from './command-executor';
 import { getInputAndProcess } from './input-processor';
 import { log } from './log';

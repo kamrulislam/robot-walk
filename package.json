@@ -10,6 +10,7 @@
     "build": "npm run build-ts",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
+    "tslint": "tslint --project tsconfig.json --config tslint.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
