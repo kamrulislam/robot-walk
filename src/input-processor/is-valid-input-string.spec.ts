@@ -31,3 +31,9 @@ test('isValidInputString test :right', () => {
     expect(isValidInputString('right')).toBe(true);
     expect(isValidInputString('right 3')).toBe(false);
 });
+
+test('isValidInputString test :random', () => {
+    expect(isValidInputString('asdf')).toBe(false);
+    expect(isValidInputString('adsf asdf fasdf')).toBe(false);
+    expect(isValidInputString('asdf 3, 3, north')).toBe(false);
+});
