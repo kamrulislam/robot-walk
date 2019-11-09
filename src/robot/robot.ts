@@ -1,7 +1,7 @@
 import { Command, directionMap, directionMoveX, directionMoveY, DirectionType, OrderedDirections, PlaceParams } from '../command';
 import { CommandType } from '../command';
 import { log } from '../log';
-import { FloorDimension } from './index.d';
+import { TableDimension } from './index.d';
 
 export class Robot {
     private posX: number;
@@ -11,9 +11,9 @@ export class Robot {
     private initialized = false;
     private totalDirections = OrderedDirections.length;
     private output: (param: PlaceParams) => void;
-    private floorDimension: FloorDimension;
+    private floorDimension: TableDimension;
 
-    constructor(dimension: FloorDimension, output: (param: PlaceParams) => void) {
+    constructor(dimension: TableDimension, output: (param: PlaceParams) => void) {
         this.output = output;
         this.floorDimension = dimension;
     }
