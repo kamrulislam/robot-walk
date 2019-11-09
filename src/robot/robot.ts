@@ -1,7 +1,7 @@
 import { Command, directionMap, directionMoveX, directionMoveY, DirectionType, OrderedDirections, PlaceParams } from '../command';
 import { CommandType } from '../command';
 import { log } from '../log';
-import { TableWidthX, TableWidthY } from './table-config';
+import { FloorDimension } from './index.d';
 
 export class Robot {
     private posX: number;
@@ -11,9 +11,11 @@ export class Robot {
     private initialized = false;
     private totalDirections = OrderedDirections.length;
     private output: (param: PlaceParams) => void;
+    private floorDimension: FloorDimension;
 
-    constructor(output: (param: PlaceParams) => void) {
+    constructor(dimension: FloorDimension, output: (param: PlaceParams) => void) {
         this.output = output;
+        this.floorDimension = dimension;
     }
 
     public apply(command: Command) {
@@ -94,7 +96,7 @@ export class Robot {
     }
 
     private isValidPosition(posX: number, posY: number) {
-        return posX >= 0 && posX < TableWidthX &&
-               posY >= 0 && posY < TableWidthY;
+        return posX >= 0 && posX < this.floorDimension.dimX &&
+               posY >= 0 && posY < this.floorDimension.dimY;
     }
 }
