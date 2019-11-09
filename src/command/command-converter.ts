@@ -22,6 +22,11 @@ export const getParamsForPlaceCommand = (inputInUppercase: string): PlaceParams 
     };
 };
 
+/**
+ * expects input string in UPPERCASE
+ * 
+ * @param inputInUppercase 
+ */
 export const getCommandFromString = (inputInUppercase: string): Command => {
     const parts = inputInUppercase.split(' ');
     const commandType = parts[0] as CommandType;
