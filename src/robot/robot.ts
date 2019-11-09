@@ -27,10 +27,8 @@ export class Robot {
                 this.report();
                 break;
             case CommandType.LEFT:
-                this.left();
-                break;
             case CommandType.RIGHT:
-                this.right();
+                this.turn(command.commandType);
                 break;
             case CommandType.MOVE:
                 this.move();
@@ -39,60 +37,62 @@ export class Robot {
     }
 
     private place(command: Command) {
-        if (this.isValidPosition(command.commandParams.posX, command.commandParams.posY)) {
-            this.initialized = true;
-            this.posX = command.commandParams.posX;
-            this.posY = command.commandParams.posY;
-            this.currentDirection = command.commandParams.direction;
-            this.currentDirectionNumber = directionMap[this.currentDirection];
+        if (!this.isValidPosition(command.commandParams.posX, command.commandParams.posY)) {
+            log('Cannot place at the position', command.commandParams);
+            return false;
         }
+
+        this.initialized = true;
+        this.posX = command.commandParams.posX;
+        this.posY = command.commandParams.posY;
+        this.currentDirection = command.commandParams.direction;
+        this.currentDirectionNumber = directionMap[this.currentDirection];
+        return true;
     }
 
     private report() {
-        if (this.initialized) {
-            this.output({
-                posX: this.posX,
-                posY: this.posY,
-                direction: this.currentDirection
-            });
-        }
-    }
-
-    private left() {
         if (!this.initialized) {
             log('Not initialized yet');
-            return;
+            return false;
         }
 
-        this.currentDirectionNumber = (this.currentDirectionNumber + this.totalDirections - 1) % this.totalDirections;
-        this.currentDirection = OrderedDirections[this.currentDirectionNumber];
-        log('turning left', this.currentDirection);
+        this.output({
+            posX: this.posX,
+            posY: this.posY,
+            direction: this.currentDirection
+        });
+        return true;
     }
 
-    private right() {
+    private turn(commandType: CommandType) {
         if (!this.initialized) {
             log('Not initialized yet');
-            return;
+            return false;
         }
-        this.currentDirectionNumber = (this.currentDirectionNumber + 1) % this.totalDirections;
+
+        const addFactor = commandType === CommandType.LEFT ? this.totalDirections - 1 : 1;
+
+        this.currentDirectionNumber = (this.currentDirectionNumber + addFactor) % this.totalDirections;
         this.currentDirection = OrderedDirections[this.currentDirectionNumber];
-        log('turning right', this.currentDirection);
+        log('turning ', commandType, ' >> facing >> ', this.currentDirection);
+        return true;
     }
 
     private move() {
         if (!this.initialized) {
             log('Not initialized yet');
-            return;
+            return false;
         }
         const posX = this.posX + directionMoveX[this.currentDirection];
         const posY = this.posY + directionMoveY[this.currentDirection];
         if (!this.isValidPosition(posX, posY)) {
             log('cannot move forward');
-            return;
+            return false;
         }
         this.posX = posX;
         this.posY = posY;
         log('moving forward', this.posX, this.posY);
+        return true;
     }
 
     private isValidPosition(posX: number, posY: number) {
