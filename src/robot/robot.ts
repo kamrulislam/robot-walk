@@ -21,18 +21,14 @@ export class Robot {
     public apply(command: Command) {
         switch(command.commandType) {
             case CommandType.PLACE:
-                this.place(command);
-                break;
+                return this.place(command);
             case CommandType.REPORT:
-                this.report();
-                break;
+                return this.report();
             case CommandType.LEFT:
             case CommandType.RIGHT:
-                this.turn(command.commandType);
-                break;
+                return this.turn(command.commandType);
             case CommandType.MOVE:
-                this.move();
-                break;
+                return this.move();
         }
     }
 
