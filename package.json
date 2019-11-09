@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "npm run serve",
+    "start-debug": "DEBUG=true npm run serve",
     "serve": "node dist/index.js",
     "build": "npm run build-ts",
     "build-ts": "tsc",
