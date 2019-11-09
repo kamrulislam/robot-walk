@@ -1,4 +1,4 @@
-import { DirectionType, Command, directionMap, OrderedDirections, directionMoveX, directionMoveY } from '../command';
+import { DirectionType, Command, directionMap, OrderedDirections, directionMoveX, directionMoveY, PlaceParams } from '../command';
 import { CommandType } from '../command';
 import { TableWidthY, TableWidthX } from './table-config';
 import { log } from '../log';
@@ -11,9 +11,10 @@ export class Robot {
     private currentDirectionNumber: number;
     private initialized = false;
     private totalDirections = OrderedDirections.length;
+    private output: (param: PlaceParams) => void;
 
-    constructor() {
-
+    constructor(output: (param: PlaceParams) => void) {
+        this.output = output;
     }
 
 
@@ -49,7 +50,11 @@ export class Robot {
 
     private report () {
         if (this.initialized) {
-            console.log(this.posX, this.posY, this.currentDirection);
+            this.output({
+                posX: this.posX,
+                posY: this.posY,
+                direction: this.currentDirection
+            });
         }
     }
 
