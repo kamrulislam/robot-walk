@@ -49,11 +49,15 @@ export class ProcessCommand implements CommandProcessor {
         }
 
         const addFactor = commandType === CommandType.LEFT ? this.totalDirections - 1 : 1;
-
-        currentPlace.directionNumber = (currentPlace.directionNumber + addFactor) % this.totalDirections;
-        currentPlace.direction = OrderedDirections[currentPlace.directionNumber];
-        log('turning ', commandType, ' >> facing >> ', currentPlace.direction);
-        return currentPlace;
+        const directionNumber = (currentPlace.directionNumber + addFactor) % this.totalDirections;
+        const direction = OrderedDirections[directionNumber];
+        const newPlace = {
+            ...currentPlace,
+            directionNumber,
+            direction
+        };
+        log('turning ', commandType, ' >> facing >> ', newPlace.direction);
+        return newPlace;
     }
 
     public move(currentPlace: PlaceInformation) {
@@ -67,10 +71,12 @@ export class ProcessCommand implements CommandProcessor {
             log('cannot move forward');
             return currentPlace;
         }
-        currentPlace.posX = posX;
-        currentPlace.posY = posY;
-        log('moving forward', currentPlace.posX, currentPlace.posY);
-        return currentPlace;
+        log('moving forward', posX, posY);
+        return {
+            ...currentPlace,
+            posX,
+            posY
+        };
     }
 
     private isValidPosition(posX: number, posY: number) {
