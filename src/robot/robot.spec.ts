@@ -1,4 +1,5 @@
-import { CommandType, DirectionType, PlaceParams } from '../command';
+import { CommandType, directionMap, DirectionType, PlaceParams } from '../command';
+import { ProcessCommand } from '../command-processor/process-command';
 import { Robot } from './robot';
 
 describe('Robot:', () => {
@@ -7,7 +8,7 @@ describe('Robot:', () => {
         return mockFunction = jest.fn((x: PlaceParams) => x);
     });
     test('initalization and report', ()=> {
-        const robot = new Robot({dimX: 5, dimY: 5}, mockFunction);
+        const robot = new Robot(new ProcessCommand(), mockFunction);
         robot.apply({
             commandType: CommandType.PLACE,
             commandParams: {
@@ -24,6 +25,7 @@ describe('Robot:', () => {
         expect(mockFunction.mock.calls[0][0]).toEqual({
             posX: 0,
             posY: 0,
+            directionNumber: directionMap[DirectionType.NORTH],
             direction: DirectionType.NORTH
         });
     });

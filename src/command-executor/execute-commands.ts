@@ -1,16 +1,10 @@
 import { Command } from '../command';
+import { ProcessCommand } from '../command-processor/process-command';
 import { output } from '../output';
 import { Robot } from '../robot';
-import { TableDimension } from '../robot/index.d';
-import { TableWidthX } from '../robot/table-config';
-import { TableWidthY } from '../robot/table-config';
 
 export const executeCommands = (commands: Command[]) => {
-    const floorDimension: TableDimension = {
-        dimX: TableWidthX,
-        dimY: TableWidthY
-    };
-    const robot = new Robot(floorDimension, output);
+    const robot = new Robot(new ProcessCommand(), output);
 
     commands.forEach((command) => {
         robot.apply(command);
