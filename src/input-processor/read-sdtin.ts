@@ -19,7 +19,11 @@ const readStdin = (fn: (error: any, inputs: string[]) => {}) => {
 
         fn(null, inputStrings);
     });
-
+    console.log('-----------------------------------');
+    console.log('Please enter commands for the Robot');
+    console.log('One command per line');
+    console.log('Once done pres ctrl+d');
+    console.log('-----------------------------------');
 };
 
 export const readStdinAsync = promisify(readStdin);

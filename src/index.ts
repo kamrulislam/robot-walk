@@ -7,4 +7,6 @@ getInputAndProcess().then((validInputs) => {
   log('valid inputs', validInputs);
   const commands = commandConverter(validInputs);
   executeCommands(commands);
+}).catch((err) => {
+  log('Error occurred...', err);
 });
