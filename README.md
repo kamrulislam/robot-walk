@@ -24,7 +24,7 @@ npm run start-debug
 
 ## Test
 
-To run test, run the following command
+This project uses `jest` for unit and integration test. To run test, run the following command
 
 ```
 npm run test
@@ -36,6 +36,25 @@ To see debug log run
 npm run test-debug
 ```
 
+## Input
+
+Two different input options are available.
+
+### Read from file
+
+The application will read from file if there exists a file in `input` folder with name `input.txt`. The file name is configurable, please see `src/config.ts` file.
+
+### Read from stdin
+
+If no input file is present, the application will read from `stdin`.
+
 ## Additional
 
-This project also includes some vscode extensions suggestions.
+- This project also includes some vscode extensions suggestions.
+- Fully enforced `tslint` 
+- Latest testing framework (`jest`) has been used with 
+  - mock function
+  - async function 
+  - iterable test
+  - deep object equality test
+
