@@ -7,5 +7,4 @@ export interface PlaceInformation extends PlaceParams {
 
 export interface CommandProcessor {
     apply: (command: Command, currentPlace: PlaceInformation) => PlaceInformation;
-    // setOutput: (output: (param: PlaceParams) => void) => void;
 }
