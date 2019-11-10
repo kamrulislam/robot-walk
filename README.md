@@ -52,6 +52,7 @@ If no input file is present, the application will read from `stdin`.
 
 - This project also includes some vscode extensions suggestions.
 - Fully enforced `tslint` 
+- Configurable table size (see `src/robot/table-config.ts`)
 - Latest testing framework (`jest`) has been used with 
   - mock function
   - async function 
