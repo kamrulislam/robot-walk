@@ -3,7 +3,7 @@ import { CommandType } from './command-type';
 import { DirectionType } from './direction';
 import { Command, PlaceParams } from './index.d';
 
-const getParamsForPlaceCommand = (inputInUppercase: string): PlaceParams | undefined => {
+export const getParamsForPlaceCommand = (inputInUppercase: string): PlaceParams | undefined => {
     if (inputInUppercase.indexOf(CommandType.PLACE) !== 0) {
         log('Not a PLACE command');
         return undefined;
@@ -22,7 +22,12 @@ const getParamsForPlaceCommand = (inputInUppercase: string): PlaceParams | undef
     };
 };
 
-const getCommandFromString = (inputInUppercase: string): Command => {
+/**
+ * expects input string in UPPERCASE
+ *
+ * @param inputInUppercase
+ */
+export const getCommandFromString = (inputInUppercase: string): Command => {
     const parts = inputInUppercase.split(' ');
     const commandType = parts[0] as CommandType;
     log('command type ', commandType);

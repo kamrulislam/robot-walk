@@ -7,15 +7,19 @@
     "start": "npm run serve",
     "start-debug": "DEBUG=true npm run serve",
     "serve": "node dist/index.js",
-    "build": "npm run build-ts",
+    "build": "npm run tslint && npm run build-ts",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint --project tsconfig.json --config tslint.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test-debug": "DEBUG=true jest --notify --verbose"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^24.0.22",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"
   },

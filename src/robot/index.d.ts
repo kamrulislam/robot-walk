@@ -1,5 +1,5 @@
 
-export interface FloorDimension {
+export interface TableDimension {
     dimX: number;
     dimY: number;
 }

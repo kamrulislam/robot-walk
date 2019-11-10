@@ -1,12 +1,12 @@
 import { Command } from '../command';
 import { output } from '../output';
 import { Robot } from '../robot';
-import { FloorDimension } from '../robot/index.d';
+import { TableDimension } from '../robot/index.d';
 import { TableWidthX } from '../robot/table-config';
 import { TableWidthY } from '../robot/table-config';
 
 export const executeCommands = (commands: Command[]) => {
-    const floorDimension: FloorDimension = {
+    const floorDimension: TableDimension = {
         dimX: TableWidthX,
         dimY: TableWidthY
     };
