@@ -7,6 +7,7 @@ describe('ProcessCommand', () => {
     beforeEach(() => {
         processCommand = new ProcessCommand();
     });
+
     test('test place command', () => {
         const placeInformation = processCommand.place({
             commandType: CommandType.PLACE,
