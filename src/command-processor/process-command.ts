@@ -1,12 +1,11 @@
-import { CommandProcessor, PlaceInformation } from '.';
 import { Command, CommandType, directionMap, directionMoveX, directionMoveY, OrderedDirections, PlaceParams } from '../command';
 import { log } from '../log';
 import { TableDimension } from '../robot/index.d';
 import { TableWidthX, TableWidthY } from '../robot/table-config';
+import { CommandProcessor, PlaceInformation } from './index.d';
 
 export class ProcessCommand implements CommandProcessor {
     private floorDimension: TableDimension;
-    // private output: (param: PlaceParams) => void;
     private totalDirections = OrderedDirections.length;
 
     constructor() {
@@ -16,16 +15,10 @@ export class ProcessCommand implements CommandProcessor {
         };
     }
 
-    // public setOutput(output: (param: PlaceParams) => void) {
-    //     this.output = output;
-    // }
-
     public apply(command: Command, currentPlace: PlaceInformation) {
         switch(command.commandType) {
             case CommandType.PLACE:
                 return this.place(command, currentPlace);
-            // case CommandType.REPORT:
-            //     return this.report(currentPlace);
             case CommandType.LEFT:
             case CommandType.RIGHT:
                 return this.turn(command.commandType, currentPlace);
@@ -49,19 +42,6 @@ export class ProcessCommand implements CommandProcessor {
         };
     }
 
-    // public report(currentPlace: PlaceInformation) {
-    //     if (!currentPlace) {
-    //         log('Not initialized yet');
-    //         return currentPlace;
-    //     }
-
-    //     this.output({
-    //         posX: currentPlace.posX,
-    //         posY: currentPlace.posY,
-    //         direction: currentPlace.direction
-    //     });
-    //     return currentPlace;
-    // }
     public turn(commandType: CommandType, currentPlace: PlaceInformation) {
         if (!currentPlace) {
             log('Not initialized yet');
@@ -75,6 +55,7 @@ export class ProcessCommand implements CommandProcessor {
         log('turning ', commandType, ' >> facing >> ', currentPlace.direction);
         return currentPlace;
     }
+
     public move(currentPlace: PlaceInformation) {
         if (!currentPlace) {
             log('Not initialized yet');

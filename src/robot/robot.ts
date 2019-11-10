@@ -1,6 +1,6 @@
 import { Command, PlaceParams } from '../command';
 import { CommandType } from '../command';
-import { CommandProcessor, PlaceInformation } from '../command-processor';
+import { CommandProcessor, PlaceInformation } from '../command-processor/index.d';
 import { log } from '../log';
 
 export class Robot {
